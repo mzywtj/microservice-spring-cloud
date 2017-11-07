@@ -1,0 +1,18 @@
+
+server:
+  port: 8010
+#注册到eureka服务器
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instanceId: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+spring:
+  application:
+    name: microservice-consumer-movie-ribbon-properties
+#负载均衡配置 microservice-provider-user为服务名称  com.netflix.loadbalancer.RandomRule为负载均衡策略
+microservice-provider-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
